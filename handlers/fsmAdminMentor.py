@@ -20,10 +20,7 @@ class FSMMentor(StatesGroup):
 async def fsm_start(message: types.Message):
     if message.chat.type == 'private':
         await FSMMentor.name.set()
-        await message.answer("Здравствуй, как зовут?",
-                             reply_markup=cancel_markup)
-    else:
-        await message.answer("Пиши в личку!")
+        await message.answer("Здравствуй, как зовут?")
 
 
 async def load_name(message: types.Message, state: FSMContext):
@@ -67,7 +64,7 @@ async def load_group(message: types.Message, state: FSMContext):
 async def submit(message: types.Message, state: FSMContext):
     if message.text.lower() == 'да':
         await sql_command_insert(state)
-        await message.answer("kmngjbjdfvndkfjgndjrgk")
+        await message.answer(")")
         await state.finish()
         await message.answer(')')
     elif message.text.lower() == 'нет':

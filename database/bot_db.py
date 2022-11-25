@@ -22,7 +22,7 @@ def sql_create():
 
 async def sql_command_insert(state):
     async with state.proxy() as data:
-        cursor.execute("INSERT INTO mentors VALUES (?, ?, ?, ?)", tuple(data.values()))
+        cursor.execute("INSERT INTO mentors VALUES (?, ?, ?, ?, ?)", tuple(data.values()))
         db.commit()
 
 
@@ -45,3 +45,5 @@ async def sql_command_delete(mentor_id):
 
 async def sql_commands_get_all_id():
     return cursor.execute('SELECT id FROM mentors').fetchall()
+
+

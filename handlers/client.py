@@ -3,8 +3,8 @@ from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import bot, dp
 # from keyboards.client_kb import start_markup
 
-#
-# @dp.message_handler(commands=['start', 'help'])
+
+@dp.message_handler(commands=['start', 'help'])
 async def start_handler(message: types.Message):
     await bot.send_message(message.from_user.id, f"Здравствуй {message.from_user.first_name}")
     await message.answer("This is an answer method!")
