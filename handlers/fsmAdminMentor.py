@@ -2,11 +2,9 @@ from aiogram import types, Dispatcher
 from aiogram.dispatcher import FSMContext
 from aiogram.dispatcher.filters import Text
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from config import bot, ADMIN
-from keyboads.client_kb import submit_markup, cancel_markup
-from aiogram.contrib.fsm_storage.memory import MemoryStorage
-from database.bot_db import sql_command_insert, sql_command_delete, sql_command_random, sql_command_all, sql_create, \
-    sql_commands_get_all_id
+from config import bot
+from keyboads.client_kb import submit_markup
+from database.bot_db import sql_command_insert
 
 
 class FSMMentor(StatesGroup):

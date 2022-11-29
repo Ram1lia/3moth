@@ -2,6 +2,7 @@ from aiogram import Dispatcher, types
 from aiogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from config import bot, dp
 # from keyboards.client_kb import start_markup
+from parser import dina_bags
 
 
 @dp.message_handler(commands=['start', 'help'])
@@ -17,6 +18,7 @@ async def mem1(message: types.Message):
     photo = open('media/mem2.jpg', 'rb')
     photo = open('media/mem3.jpg', 'rb')
     await bot.send_photo(message.from_user.id, photo=photo)
+
 
 async def quiz_1(message: types.Message):
     markup = InlineKeyboardMarkup()
@@ -43,16 +45,25 @@ async def quiz_1(message: types.Message):
         reply_markup=markup
     )
 
-async def gg (message: types.Message):
+
+async def gg(message: types.Message):
     if message.reply_to_message:
-        await bot.pin_chat_message(message.chat.id,message.reply_to_message.message_id)
+        await bot.pin_chat_message(message.chat.id, message.reply_to_message.message_id)
     else:
         await message.reply('Надо ответить сообщением')
 
+
+async def parser_bags(message: types.Message):
+    data = dina_bags.parser()
+    for item in data:
+        await bot.send_message(message.from_user.id, f"{item['brand']}\n\n"
+                                                     f"{item['link']}\n\n"
+                                                     f"{item['price']}")
 
 
 def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(start_handler, commands=['start', 'help'])
     dp.register_message_handler(quiz_1, commands=['quiz'])
     dp.register_message_handler(mem1, commands=['mem'])
-    dp.register_message_handler(gg, commands=['pin'], commands_prefix = '!')
+    dp.register_message_handler(gg, commands=['pin'], commands_prefix='!')
+    dp.register_message_handler(parser_bags, commands=['bags'])
