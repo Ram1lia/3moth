@@ -67,3 +67,4 @@ def register_handlers_client(dp: Dispatcher):
     dp.register_message_handler(mem1, commands=['mem'])
     dp.register_message_handler(gg, commands=['pin'], commands_prefix='!')
     dp.register_message_handler(parser_bags, commands=['bags'])
+x
